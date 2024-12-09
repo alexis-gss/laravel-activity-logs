@@ -1,0 +1,54 @@
+{
+  "name": "alexis-gss/laravel-activity-logs",
+  "description": "Log activities on models in Laravel project.",
+  "type": "library",
+  "license": "MIT",
+  "version": "1.0.0",
+  "authors": [
+    {
+      "name": "Alexis Gousseau",
+      "homepage": "https://alexis-gousseau.com",
+      "role": "Developer"
+    }
+  ],
+  "keywords": [
+    "alexis-gss",
+    "laravel",
+    "activity-logs"
+  ],
+  "readme": "https://github.com/alexis-gss/laravel-activity-logs/blob/master/README.md",
+  "support": {
+    "issues": "https://github.com/alexis-gss/laravel-activity-logs/issues"
+  },
+  "require": {
+    "php": "^7.3|^8.0",
+    "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
+    "laravel/framework": "^8.0|^9.0|^10.0|^11.0"
+  },
+  "require-dev": {
+    "larastan/larastan": "^2.9",
+    "phpstan/phpstan": "^1.11",
+    "slevomat/coding-standard": "^8.3",
+    "squizlabs/php_codesniffer": "^3.7"
+  },
+  "autoload": {
+    "psr-4": {
+      "LaravelActivityLogs\\": "src/"
+    }
+  },
+  "config": {
+    "sort-packages": true,
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "LaravelActivityLogs\\ActivityLogsServiceProvider"
+      ]
+    }
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true
+}

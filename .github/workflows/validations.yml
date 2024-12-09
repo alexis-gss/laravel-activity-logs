@@ -1,0 +1,14 @@
+name: Github actions validations
+
+on:
+  push:
+    branches:
+      - "**"
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  validation-php:
+    name: Validation php
+    uses: alexis-gss/github-workflows/.github/workflows/validation-php.yml@master
