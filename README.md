@@ -28,9 +28,10 @@
 
 # Compatibility
 
-|   Version   | Laravel 8^  | Laravel 9^  | Laravel 10^ | Laravel 11^ |
-| :---------: | :---------: | :---------: | :---------: | :---------: |
-|    v1.0.0   |      ✅     |      ✅     |      ✅     |      ✅     |
+|   Version   | Laravel 8^  | Laravel 9^  | Laravel 10^ | Laravel 11^ | Laravel 12^ |
+| :---------: | :---------: | :---------: | :---------: | :---------: | :---------: |
+|    v1.0.1   |      ✅     |      ✅     |      ✅     |      ✅     |      ✅     |
+|    v1.0.0   |      ✅     |      ✅     |      ✅     |      ✅     |      ❌     |
 
 # Frameworks, Platforms and Libraries
 [![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
