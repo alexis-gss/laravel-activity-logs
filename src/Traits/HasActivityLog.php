@@ -11,14 +11,14 @@ use LaravelActivityLogs\Models\ActivityLog as ActivityLogModel;
  * Futhermore, event in the Model observer doesn't erase actual events in the model,
  * but adds them.
  */
-trait ActivityLog
+trait HasActivityLog
 {
     /**
      * Perform any actions required after the model boots.
      *
      * @return void
      */
-    public static function bootActivityLog(): void
+    public static function bootHasActivityLog(): void
     {
         static::observe(ModelObserver::class);
     }
