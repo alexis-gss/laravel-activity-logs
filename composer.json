@@ -3,7 +3,7 @@
   "description": "Log activities on models in Laravel project.",
   "type": "library",
   "license": "MIT",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "authors": [
     {
       "name": "Alexis Gousseau",
@@ -35,6 +35,14 @@
     "psr-4": {
       "LaravelActivityLogs\\": "src/"
     }
+  },
+  "scripts": {
+    "phpcs": [
+      "./vendor/bin/phpcs"
+    ],
+    "phpstan": [
+      "./vendor/bin/phpstan"
+    ]
   },
   "config": {
     "sort-packages": true,

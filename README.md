@@ -10,7 +10,8 @@
 </div>
 
 # Introduction
-[Laravel Activity Logs](https://packagist.org/packages/alexis-gss/laravel-activity-logs) is, as its name suggests, a package to test specified actions in a Laravel project like authentification, CRUDs, views and more.
+
+[Laravel Activity Logs](https://packagist.org/packages/alexis-gss/laravel-activity-logs) is package to log activities on models in Laravel project.
 
 # Table of contents
 
@@ -20,27 +21,27 @@
 - [Frameworks, Platforms and Libraries](#frameworks-platforms-and-libraries)
 - [Documentation](#documentation)
 - [Contributing](#contributing)
-    - [Create a task](#create-a-task)
-    - [Fixing a Bug](#fixing-a-bug)
-    - [Proposing a Change](#proposing-a-change)
+  - [Create a task](#create-a-task)
+  - [Fixing a Bug](#fixing-a-bug)
+  - [Proposing a Change](#proposing-a-change)
 - [Changelog](#changelog)
 - [Copyright and License](#copyright-and-license)
 
 # Compatibility
 
-|   Version   | Laravel 8^  | Laravel 9^  | Laravel 10^ | Laravel 11^ | Laravel 12^ |
-| :---------: | :---------: | :---------: | :---------: | :---------: | :---------: |
-|    v1.0.1   |      ✅     |      ✅     |      ✅     |      ✅     |      ✅     |
-|    v1.0.0   |      ✅     |      ✅     |      ✅     |      ✅     |      ❌     |
+| Version | Laravel 8^ | Laravel 9^ | Laravel 10^ | Laravel 11^ | Laravel 12^ |
+| :-----: | :--------: | :--------: | :---------: | :---------: | :---------: |
+| [v2.0.0](https://github.com/alexis-gss/laravel-activity-logs/releases/tag/v2.0.0)  |     ✅     |     ✅     |     ✅      |     ✅      |     ✅      |
+| [v1.0.0](https://github.com/alexis-gss/laravel-activity-logs/releases/tag/v1.0.0)  |     ✅     |     ✅     |     ✅      |     ✅      |     ❌      |
 
 # Frameworks, Platforms and Libraries
+
 [![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
 [![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com/docs/master)
-[![Gitbook](https://img.shields.io/badge/GitBook-7B36ED?style=for-the-badge&logo=gitbook&logoColor=white)](https://www.gitbook.com/)
 
 # Documentation
 
-You can find all the documentation of this package on this link : [Laravel Activity Logs documentation](https://docs-laravel-activity-logs.alexis-gousseau.com).
+You can find all the documentation of this package on this link : [Laravel Activity Logs documentation](https://doc-laravel-activity-logs.alexis-gousseau.com).
 
 # Contributing
 
@@ -48,7 +49,7 @@ You can find all the documentation of this package on this link : [Laravel Activ
 
 You can create a [new issue](https://github.com/alexis-gss/laravel-activity-logs/issues/new/choose) with a specific templates : bug or feature.
 
-Once your code is working, please run the following commands `./vendor/bin/phpstan`, `./vendor/bin/phpcs` to verify that your code is following the same coding standards (in all cases, there is github actions that check this part).
+Once your code is working, please run the following commands `composer run phpcs`, `composer run phpstan` to verify that your code is following the same coding standards (in all cases, there is github actions that check this part).
 
 ### Fixing a Bug
 
@@ -60,7 +61,7 @@ When implementing a feature please create an issue first explaining your idea an
 
 # Changelog
 
-Latest version v1.0.0.
+Latest version [v2.0.0](https://github.com/alexis-gss/laravel-activity-logs/releases/tag/v2.0.0).
 
 See the [CHANGELOG.md](CHANGELOG.md) file for details.
 

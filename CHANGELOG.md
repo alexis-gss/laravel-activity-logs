@@ -6,6 +6,19 @@ All notable changes to `laravel-activity-logs` will be documented in this file.
 - This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html),
 - Commits respect [Conventionnal commits](https://www.conventionalcommits.org/en/v1.0.0/) & use [Gitmoji](https://gitmoji.dev/).
 
+## **[v2.0.0] - 25/09/2025**
+
+### Changed
+- chore: ⬆️ add laravel 12 compatibility
+- docs: 🔥 remove useless documentations
+
+### Fixed
+- fix: 🚚 rename the trait to HasActivityLog
+- fix: 🗃 loading migrations instead of publishing them
+- fix: 🚨 solving php linters errors
+
+Full changelog: https://github.com/alexis-gss/laravel-activity-logs/compare/v1.0.0...v2.0.0
+
 ## **[v1.0.0] - 13/12/2024**
 
 ### Added
