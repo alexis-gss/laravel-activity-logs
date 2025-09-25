@@ -109,7 +109,7 @@ trait BaseEnum
                         }
                         $baseArray[$index] = $elements[$enum->name];
                     }
-                    return [$enum->name => (object)$baseArray];
+                    return [$enum->name => (object) $baseArray];
                 })->all());
         }
         return self::getCache('enums');
