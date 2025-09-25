@@ -13,10 +13,7 @@ class ActivityLogsServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        /** Publish all files. */
-        $this->publishes([
-            __DIR__ . '/Migrations/2024_12_10_100000_create_actitivy_logs_table.php'
-                => base_path('database/migrations/2024_12_10_100000_create_actitivy_logs_table.php'),
-        ]);
+        /** Load migrations. */
+        $this->loadMigrationsFrom(__DIR__ . '/Migrations');
     }
 }
