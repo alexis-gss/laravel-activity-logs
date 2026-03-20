@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Str;
+use LaravelActivityLogs\Database\Factories\ActivityLogFactory;
 use LaravelActivityLogs\Enums\ActivityLogsEventEnum;
-use LaravelActivityLogs\Factories\ActivityLogFactory;
+use LaravelBackend\Traits\Models\HasModelNaming;
 
 /**
  * @property string                                           $model_class  Target model.
@@ -23,6 +24,7 @@ use LaravelActivityLogs\Factories\ActivityLogFactory;
 class ActivityLog extends Model
 {
     use HasFactory;
+    use HasModelNaming;
 
     /**
      * Indicates if the model should be timestamped.
@@ -136,14 +138,15 @@ class ActivityLog extends Model
         switch ($type) {
             case 'string':
                 return match (true) {
-                    Str::length(\strip_tags($value)) !== Str::length($value)           => 'html',
-                    Str::startsWith($value, 'storage/modelfiles')                      => 'file',
-                    Str::isUuid($value)                                                => 'uuid',
-                    Str::isUlid($value)                                                => 'ulid',
-                    Str::isUrl($value)                                                 => 'url',
-                    \is_numeric($value)                                                => 'numeric',
-                    Str::isJson($value) and (Str::startsWith($value, '[') or Str::startsWith($value, '{')) => 'json',
-                    default => 'string'
+                    Str::length(\strip_tags($value)) !== Str::length($value)               => 'html',
+                    Str::startsWith($value, 'storage/modelfiles')                          => 'file',
+                    Str::isUuid($value)                                                    => 'uuid',
+                    Str::isUlid($value)                                                    => 'ulid',
+                    Str::isUrl($value)                                                     => 'url',
+                    \is_numeric($value)                                                    => 'numeric',
+                    Str::isJson($value)
+                        and (Str::startsWith($value, '[') or Str::startsWith($value, '{')) => 'json',
+                    default                                                                => 'string'
                 };
             case 'NULL':
             case 'object':
@@ -165,12 +168,14 @@ class ActivityLog extends Model
     /**
      * Set the factory of the model.
      *
-     * @return \LaravelActivityLogs\Factories\ActivityLogFactory
+     * @return \LaravelActivityLogs\Database\Factories\ActivityLogFactory
      */
-    protected static function newFactory(): \LaravelActivityLogs\Factories\ActivityLogFactory
+    protected static function newFactory(): \LaravelActivityLogs\Database\Factories\ActivityLogFactory
     {
         return new ActivityLogFactory();
     }
+
+    // * RELATIONSHIPS
 
     /**
      * Get model that owns the Activity log (belongs-to relationship).

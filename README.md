@@ -1,72 +1,48 @@
-<div align="center">
+# Laravel Activity Logs
 
-[![Banner of the github account](./assets/images/github-visual.png)](https://packagist.org/packages/alexis-gss/laravel-activity-logs)
+[Laravel Activity Logs](https://packagist.org/packages/alexis-gss/laravel-activity-logs) Logs est un package utilisé pour enregistrer toutes les actions effectuées sur des modèles spécifiques.
 
-[![GitHub latest commit](https://img.shields.io/github/last-commit/alexis-gss/laravel-activity-logs?color=ff2908&style=for-the-badge)](https://github.com/alexis-gss/laravel-activity-logs/commit/master)
-[![Packagist Version](https://img.shields.io/packagist/v/alexis-gss/laravel-activity-logs?color=ff2908&style=for-the-badge)](https://packagist.org/packages/alexis-gss/laravel-activity-logs)
-[![Packagist Downloads](https://img.shields.io/packagist/dt/alexis-gss/laravel-activity-logs?color=ff2908&style=for-the-badge)](https://packagist.org/packages/alexis-gss/laravel-activity-logs)
-[![GitHub License](https://img.shields.io/github/license/alexis-gss/laravel-activity-logs?color=ff2908&style=for-the-badge)](https://packagist.org/packages/alexis-gss/laravel-activity-logs)
+## Table des matières
 
-</div>
+- [Laravel Activity Logs](#laravel-activity-logs)
+  - [Table des matières](#table-des-matières)
+  - [Compatibilité](#compatibilité)
+  - [Documentation](#documentation)
+    - [Installation](#installation)
+    - [Détails](#détails)
+  - [Changelog](#changelog)
+  - [Copyright et licence](#copyright-et-licence)
 
-# Introduction
+## Compatibilité
 
-[Laravel Activity Logs](https://packagist.org/packages/alexis-gss/laravel-activity-logs) is package to log activities on models in Laravel project.
+| Version                                                                                                   | [1.0.0](https://github.com/alexis-gss/laravel-activity-logs/tree/v1.0.0) -> [2.0.0](https://github.com/alexis-gss/laravel-activity-logs/tree/v2.0.0) | [3.0.0](https://github.com/alexis-gss/laravel-activity-logs/tree/v3.0.0) |
+|:----------------------------------------------------------------------------------------------------------|:--:|:--:|
+| [alexis-gss\laravel-frontend^1.0](https://github.com/alexis-gss/laravel-activity-logs/tree/v1.0.0) | ❌ | ✅ |
 
-# Table of contents
+## Documentation
 
-- [Introduction](#introduction)
-- [Table of contents](#table-of-contents)
-- [Compatibility](#compatibility)
-- [Frameworks, Platforms and Libraries](#frameworks-platforms-and-libraries)
-- [Documentation](#documentation)
-- [Contributing](#contributing)
-  - [Create a task](#create-a-task)
-  - [Fixing a Bug](#fixing-a-bug)
-  - [Proposing a Change](#proposing-a-change)
-- [Changelog](#changelog)
-- [Copyright and License](#copyright-and-license)
+### Installation
 
-# Compatibility
+Assurez-vous que le package [`alexis-gss/laravel-backend`](https://github.com/alexis-gss/laravel-backend) est bien **installé** et **configuré**, puis éxecutez la commande suivante pour installer le package:
+```php
+composer req alexis-gss/laravel-activity-logs && bash vendor/alexis-gss/laravel-activity-logs/installer.sh
+```
 
-| Version | Laravel 8^ | Laravel 9^ | Laravel 10^ | Laravel 11^ | Laravel 12^ |
-| :-----: | :--------: | :--------: | :---------: | :---------: | :---------: |
-| [v2.0.0](https://github.com/alexis-gss/laravel-activity-logs/releases/tag/v2.0.0)  |     ✅     |     ✅     |     ✅      |     ✅      |     ✅      |
-| [v1.0.0](https://github.com/alexis-gss/laravel-activity-logs/releases/tag/v1.0.0)  |     ✅     |     ✅     |     ✅      |     ✅      |     ❌      |
+### Détails
 
-# Frameworks, Platforms and Libraries
+Pour toutes informations complémentaires, veuillez consulter nos autres documentations:
+- [Commandes](./docs/COMMANDS.md)
+- [Enums](./docs/ENUMS.md)
+- [Traits](./docs/TRAITS.md)
 
-[![PHP](https://img.shields.io/badge/php-%23777BB4.svg?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net/)
-[![Laravel](https://img.shields.io/badge/laravel-%23FF2D20.svg?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com/docs/master)
+## Changelog
 
-# Documentation
+Dernière version v3.0.0.
 
-You can find all the documentation of this package on this link : [Laravel Activity Logs documentation](https://doc-laravel-activity-logs.alexis-gousseau.com).
+Voir le journal de modifications [CHANGELOG.md](CHANGELOG.md) pour les détails.
 
-# Contributing
+## Copyright et licence
 
-### Create a task
+[Laravel Activity Logs](https://packagist.org/packages/alexis-gss/laravel-activity-logs) est écrit et maintenu par [Alexis Gousseau](https://github.com/alexis-gss).
 
-You can create a [new issue](https://github.com/alexis-gss/laravel-activity-logs/issues/new/choose) with a specific templates : bug or feature.
-
-Once your code is working, please run the following commands `composer run phpcs`, `composer run phpstan` to verify that your code is following the same coding standards (in all cases, there is github actions that check this part).
-
-### Fixing a Bug
-
-When fixing a bug please make sure to test it in several browsers. If you are not able to do so, mention that in a PR comment, so other contributors can do it.
-
-### Proposing a Change
-
-When implementing a feature please create an issue first explaining your idea and asking whether there's need for such a feature. Remember the script's core philosophy is to stay simple and minimal, doing one thing and doing it right.
-
-# Changelog
-
-Latest version [v2.0.0](https://github.com/alexis-gss/laravel-activity-logs/releases/tag/v2.0.0).
-
-See the [CHANGELOG.md](CHANGELOG.md) file for details.
-
-# Copyright and License
-
-[Laravel Activity Logs](https://packagist.org/packages/alexis-gss/laravel-activity-logs) was written by [Alexis Gousseau](https://github.com/alexis-gss).
-
-Copyright (c) 2024 and beyond Alexis Gousseau.
+Copyright (c) 2024 et au-delà Alexis Gousseau.

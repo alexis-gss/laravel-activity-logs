@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('activity_logs', function (Blueprint $table) {
             $table->id()->comment('Id of the activity log.');
             $table->string('model_class')->comment('Target model.');
-            $table->json('data')->nullable()->comment('List of changes (old and new values).');
+            $table->json('data')->nullable()->comment('List of changes.');
             $table->foreignId('user_id')->comment('Id of the associated user.')->nullable()
                 ->constrained('users')->onUpdate('cascade')->onDelete('cascade');
             $table->boolean('is_anonymous')->comment('If there is no user connected when action was realised.');

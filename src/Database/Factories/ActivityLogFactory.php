@@ -1,13 +1,13 @@
 <?php
 
-namespace LaravelActivityLogs\Factories;
+namespace LaravelActivityLogs\Database\Factories;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use LaravelActivityLogs\Enums\ActivityLogsEventEnum;
 use LaravelActivityLogs\Models\ActivityLog;
-use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends Factory<\LaravelActivityLogs\Models\ActivityLog>
+ * Factory for generating ActivityLog model instances with randomized data.
  */
 final class ActivityLogFactory extends Factory
 {

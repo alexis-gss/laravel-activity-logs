@@ -6,6 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 use LaravelActivityLogs\Enums\ActivityLogsEventEnum;
 use LaravelActivityLogs\Models\ActivityLog;
 
+/**
+ * Observes Eloquent model events and delegates activity logging to ActivityLog.
+ */
 class ModelObserver
 {
     /**

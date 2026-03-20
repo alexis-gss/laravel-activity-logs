@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ruleset name="Laravel Unit Tests"
+<ruleset name="LDC Laravel"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
     <description>Created with the PHP Coding Standard Generator. http://edorian.github.com/php-coding-standard-generator/</description>
     <arg name="colors" />
     <arg name="extensions" value="php" />
     <file>src/</file>
+    <exclude-pattern type="relative">src/files/content/**/*.php</exclude-pattern>
     <rule ref="PSR1" />
     <rule ref="PSR12" />
-
     <rule ref="Generic.Classes.DuplicateClassName"/>
     <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
     <rule ref="Generic.CodeAnalysis.ForLoopShouldBeWhileLoop"/>
@@ -18,8 +18,8 @@
     <rule ref="Generic.CodeAnalysis.UnusedFunctionParameter"/>
     <rule ref="Generic.CodeAnalysis.UselessOverridingMethod"/>
     <rule ref="Generic.Commenting.DocComment.SpacingBeforeTags"/>
-    <rule ref="Generic.Commenting.Fixme"/>
     <rule ref="Generic.Commenting.Todo"/>
+    <rule ref="Generic.Commenting.Fixme"/>
     <rule ref="Generic.ControlStructures.InlineControlStructure"/>
     <rule ref="Generic.Files.ByteOrderMark"/>
     <rule ref="Generic.Files.LineEndings"/>
@@ -30,16 +30,15 @@
     <rule ref="Generic.Functions.FunctionCallArgumentSpacing"/>
     <rule ref="Generic.Metrics.CyclomaticComplexity"/>
     <rule ref="Generic.Metrics.NestingLevel"/>
-    <rule ref="Generic.NamingConventions.CamelCapsFunctionName"/>
     <rule ref="Generic.NamingConventions.ConstructorName"/>
     <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
+    <rule ref="Generic.NamingConventions.CamelCapsFunctionName"/>
     <rule ref="Generic.PHP.DeprecatedFunctions"/>
     <rule ref="Generic.PHP.DisallowShortOpenTag"/>
     <rule ref="Generic.PHP.ForbiddenFunctions"/>
     <rule ref="Generic.PHP.NoSilencedErrors"/>
     <rule ref="Generic.Strings.UnnecessaryStringConcat"/>
     <rule ref="Generic.WhiteSpace.DisallowTabIndent"/>
-    <rule ref="Generic.WhiteSpace.LanguageConstructSpacing"/>
     <rule ref="Generic.WhiteSpace.ScopeIndent"/>
     <rule ref="PEAR.Classes.ClassDeclaration"/>
     <rule ref="PEAR.Commenting.InlineComment"/>
@@ -58,6 +57,7 @@
         <exclude name="Squiz.PHP.DisallowMultipleAssignments.FoundInControlStructure" />
     </rule>
     <rule ref="Squiz.PHP.DisallowSizeFunctionsInLoops"/>
+
     <rule ref="Squiz.PHP.DiscouragedFunctions">
         <properties>
             <property name="error" value="true"/>
@@ -72,6 +72,7 @@
     <rule ref="Squiz.Scope.MemberVarScope"/>
     <rule ref="Squiz.Scope.MethodScope"/>
     <rule ref="Squiz.Scope.StaticThisUsage"/>
+    <rule ref="Generic.WhiteSpace.LanguageConstructSpacing"/>
     <rule ref="Squiz.WhiteSpace.LogicalOperatorSpacing"/>
     <rule ref="Squiz.WhiteSpace.MemberVarSpacing">
         <properties>
@@ -104,7 +105,7 @@
     </rule>
     <rule ref="Squiz.Commenting.FunctionCommentThrowTag"/>
     <rule ref="Squiz.Commenting.InlineComment">
-        <severity>0</severity>
+        <exclude name="Squiz.Commenting.InlineComment.DocBlock" />
     </rule>
     <rule ref="Squiz.Commenting.LongConditionClosingComment">
         <exclude name="Squiz.Commenting.LongConditionClosingComment.SpacingBefore" />
@@ -112,4 +113,10 @@
     <rule ref="Squiz.Commenting.PostStatementComment"/>
     <rule ref="Squiz.Commenting.VariableComment"/>
     <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses.UnusedUse" />
+
+    <!-- For Laravel migrations -->
+    <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
+        <exclude-pattern>*/database/migrations/*</exclude-pattern>
+    </rule>
+
 </ruleset>

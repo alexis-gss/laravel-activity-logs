@@ -2,8 +2,11 @@
 
 namespace LaravelActivityLogs\Enums;
 
-use LaravelActivityLogs\Traits\BaseEnum;
+use LaravelFrontend\Traits\Enums\BaseEnum;
 
+/**
+ * Defines the available activity log events.
+ */
 enum ActivityLogsEventEnum: int
 {
     use BaseEnum;
@@ -19,20 +22,20 @@ enum ActivityLogsEventEnum: int
      * @phpstan-ignore-next-line
      */
     private const LABELS = [
-        self::created->name    => 'crud.actions.create',
-        self::updated->name    => 'crud.actions.edit',
-        self::duplicated->name => 'crud.actions.duplicate',
-        self::deleted->name    => 'crud.actions.delete',
+        self::created->name    => 'laravel-backend::crud.actions.create',
+        self::updated->name    => 'laravel-backend::crud.actions.edit',
+        self::duplicated->name => 'laravel-backend::crud.actions.duplicate',
+        self::deleted->name    => 'laravel-backend::crud.actions.delete',
     ];
 
     /**
      * Custom added classes definition.
      */
-    private const BOOTSTRAPCLASS = [
-        self::created->name    => 'success',
-        self::updated->name    => 'warning',
-        self::duplicated->name => 'secondary',
-        self::deleted->name    => 'danger',
+    private const TAILWINDCLASSES = [
+        self::created->name    => 'successive',
+        self::updated->name    => 'preventive',
+        self::duplicated->name => 'informative',
+        self::deleted->name    => 'destructive',
     ];
 
     /**
@@ -40,8 +43,8 @@ enum ActivityLogsEventEnum: int
      *
      * @return string
      */
-    public function bootstrapClass(): string
+    public function tailwindclass(): string
     {
-        return self::BOOTSTRAPCLASS[$this->name];
+        return self::TAILWINDCLASSES[$this->name];
     }
 }

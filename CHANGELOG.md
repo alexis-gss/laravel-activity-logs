@@ -6,6 +6,10 @@ All notable changes to `laravel-activity-logs` will be documented in this file.
 - This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html),
 - Commits respect [Conventionnal commits](https://www.conventionalcommits.org/en/v1.0.0/) & use [Gitmoji](https://gitmoji.dev/).
 
+## **[v3.0.0] - 25/09/2025**
+
+XXX
+
 ## **[v2.0.0] - 25/09/2025**
 
 ### Changed
