@@ -4,15 +4,21 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "005d5127a77d88321914bf72a388d9ca",
+    "content-hash": "3d805e32688a14cab77485c097fd261a",
     "packages": [
         {
             "name": "alexis-gss/laravel-backend",
             "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexis-gss/laravel-backend.git",
+                "reference": "e152862835a92e939b5b38aa0d7908cc5e227d47"
+            },
             "dist": {
-                "type": "path",
-                "url": "./../laravel-backend",
-                "reference": "7ae86d8bc4c868110075102757e03f7c100ad8d0"
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexis-gss/laravel-backend/zipball/e152862835a92e939b5b38aa0d7908cc5e227d47",
+                "reference": "e152862835a92e939b5b38aa0d7908cc5e227d47",
+                "shasum": ""
             },
             "require": {
                 "alexis-gss/laravel-activity-logs": "^3.0",
@@ -46,25 +52,7 @@
                     "LaravelBackend\\": "src/"
                 }
             },
-            "autoload-dev": {
-                "psr-4": {
-                    "LaravelBackend\\Tests\\": "tests"
-                }
-            },
-            "scripts": {
-                "post-autoload-dump": [
-                    "@php ./vendor/bin/testbench package:discover --ansi"
-                ],
-                "test": [
-                    "vendor/bin/phpunit"
-                ],
-                "phpcs": [
-                    "./vendor/bin/phpcs"
-                ],
-                "phpstan": [
-                    "./vendor/bin/phpstan"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -75,19 +63,24 @@
                 "laravel"
             ],
             "support": {
-                "issues": "https://github.com/alexis-gss/laravel-backend/issues"
+                "issues": "https://github.com/alexis-gss/laravel-backend/issues",
+                "source": "https://github.com/alexis-gss/laravel-backend/tree/v1.0.0"
             },
-            "transport-options": {
-                "relative": true
-            }
+            "time": "2026-03-28T14:52:17+00:00"
         },
         {
             "name": "alexis-gss/laravel-frontend",
             "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexis-gss/laravel-frontend.git",
+                "reference": "78a311bd8ced602cbbf3726ef478e0d205ba3dbc"
+            },
             "dist": {
-                "type": "path",
-                "url": "./../laravel-frontend",
-                "reference": "280c2bc07da4cd3c8119a45fac5aad0a15f6a861"
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexis-gss/laravel-frontend/zipball/78a311bd8ced602cbbf3726ef478e0d205ba3dbc",
+                "reference": "78a311bd8ced602cbbf3726ef478e0d205ba3dbc",
+                "shasum": ""
             },
             "require": {
                 "alexis-gss/laravel-i18n": "^1.0",
@@ -116,26 +109,14 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "LaravelFrontend\\": "src/"
-                },
                 "files": [
                     "src/Helpers/methods.php"
-                ]
-            },
-            "autoload-dev": {
+                ],
                 "psr-4": {
-                    "LaravelFrontend\\Tests\\": "tests"
+                    "LaravelFrontend\\": "src/"
                 }
             },
-            "scripts": {
-                "post-autoload-dump": [
-                    "@php ./vendor/bin/testbench package:discover --ansi"
-                ],
-                "test": [
-                    "vendor/bin/phpunit"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -146,19 +127,24 @@
                 "laravel"
             ],
             "support": {
-                "issues": "https://github.com/alexis-gss/laravel-frontend/issues"
+                "issues": "https://github.com/alexis-gss/laravel-frontend/issues",
+                "source": "https://github.com/alexis-gss/laravel-frontend/tree/v1.0.0"
             },
-            "transport-options": {
-                "relative": true
-            }
+            "time": "2026-03-28T14:46:02+00:00"
         },
         {
             "name": "alexis-gss/laravel-i18n",
             "version": "1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/alexis-gss/laravel-i18n.git",
+                "reference": "a982f3b68cbb0977ae371d2751029c3525d569a8"
+            },
             "dist": {
-                "type": "path",
-                "url": "./../laravel-i18n",
-                "reference": "b4daa8d496e8fc64b93481c31e2e76d0448eff49"
+                "type": "zip",
+                "url": "https://api.github.com/repos/alexis-gss/laravel-i18n/zipball/a982f3b68cbb0977ae371d2751029c3525d569a8",
+                "reference": "a982f3b68cbb0977ae371d2751029c3525d569a8",
+                "shasum": ""
             },
             "require": {
                 "alexis-gss/laravel-frontend": "^1.0",
@@ -189,17 +175,7 @@
                     "LaravelI18n\\": "src/"
                 }
             },
-            "scripts": {
-                "post-autoload-dump": [
-                    "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump"
-                ],
-                "phpcs": [
-                    "./vendor/bin/phpcs"
-                ],
-                "phpstan": [
-                    "./vendor/bin/phpstan"
-                ]
-            },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -217,11 +193,10 @@
                 "laravel"
             ],
             "support": {
-                "issues": "https://github.com/alexis-gss/laravel-i18n/issues"
+                "issues": "https://github.com/alexis-gss/laravel-i18n/issues",
+                "source": "https://github.com/alexis-gss/laravel-i18n/tree/v1.0.0"
             },
-            "transport-options": {
-                "relative": true
-            }
+            "time": "2026-03-28T14:48:13+00:00"
         },
         {
             "name": "brick/math",

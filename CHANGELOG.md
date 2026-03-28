@@ -6,9 +6,13 @@ All notable changes to `laravel-activity-logs` will be documented in this file.
 - This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html),
 - Commits respect [Conventionnal commits](https://www.conventionalcommits.org/en/v1.0.0/) & use [Gitmoji](https://gitmoji.dev/).
 
-## **[v3.0.0] - 25/09/2025**
+## **[v3.0.0] - 28/01/2026**
 
-XXX
+### Added
+
+- feat: ✨ initial stable integration of Laravel base stack packages
+
+Full changelog: https://github.com/alexis-gss/laravel-activity-logs/compare/v2.0.0...v3.0.0
 
 ## **[v2.0.0] - 25/09/2025**
 

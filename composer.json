@@ -33,28 +33,6 @@
         "slevomat/coding-standard": "^8.3",
         "squizlabs/php_codesniffer": "^3.7"
     },
-    "repositories": {
-        "alexis-gss/laravel-frontend": {
-            "type": "path",
-            "url": "./../laravel-frontend"
-        },
-        "alexis-gss/laravel-backend": {
-            "type": "path",
-            "url": "./../laravel-backend"
-        },
-        "alexis-gss/laravel-dynamic-pages": {
-            "type": "path",
-            "url": "./../laravel-dynamic-pages"
-        },
-        "alexis-gss/laravel-i18n": {
-            "type": "path",
-            "url": "./../laravel-i18n"
-        },
-        "alexis-gss/laravel-activity-logs": {
-            "type": "path",
-            "url": "./../laravel-activity-logs"
-        }
-    },
     "autoload": {
         "psr-4": {
             "LaravelActivityLogs\\": "src/"
