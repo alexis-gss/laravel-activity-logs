@@ -22,8 +22,8 @@
     },
     "require": {
         "php": "^8.3",
-        "illuminate/support": "^11.0|^12.0",
-        "laravel/framework": "^11.0|^12.0",
+        "illuminate/support": "~11|~12|~13",
+        "laravel/framework": "~11|~12|~13",
         "alexis-gss/laravel-backend": "^1.0",
         "alexis-gss/laravel-frontend": "^1.0"
     },
