@@ -1,0 +1,24 @@
+{
+    "name": "alexis-gss/laravel-activity-logs",
+    "version": "3.0.0",
+    "description": "Log activities on models in Laravel project.",
+    "homepage": "https://laravel-starter.alexis-gousseau.com",
+    "authors": [
+        {
+            "name": "Alexis Gousseau",
+            "homepage": "https://alexis-gousseau.com",
+            "role": "Developer"
+        }
+    ],
+    "keywords": [
+        "alexis-gss",
+        "laravel",
+        "activity-logs"
+    ],
+    "license": "MIT",
+    "private": true,
+    "type": "module",
+    "dependencies": {
+        "@alexis-gss/husky-config": "^1.0.2"
+    }
+}
