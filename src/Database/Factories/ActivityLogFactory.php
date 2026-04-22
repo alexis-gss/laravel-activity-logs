@@ -8,6 +8,8 @@ use LaravelActivityLogs\Models\ActivityLog;
 
 /**
  * Factory for generating ActivityLog model instances with randomized data.
+ *
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\LaravelActivityLogs\Models\ActivityLog>
  */
 final class ActivityLogFactory extends Factory
 {
@@ -27,14 +29,14 @@ final class ActivityLogFactory extends Factory
     {
         $boolean = rand(0, 1);
         return [
-            'user_id'      => null,
-            'is_anonymous' => $boolean,
-            'is_console'   => !$boolean,
-            'model_class'  => "\App\Models\User",
-            'model_id'     => 1,
-            'event'        => \collect(ActivityLogsEventEnum::toArray())->random()->value,
-            'data'         => [],
-            'created_at'   => now(),
+            'user_id'       => null,
+            'is_anonymous'  => $boolean,
+            'is_console'    => !$boolean,
+            'model_class'   => "\App\Models\User",
+            'model_id'      => 1,
+            'event'         => \collect(ActivityLogsEventEnum::cases())->random()->value,
+            'modifications' => [],
+            'created_at'    => now(),
         ];
     }
 }

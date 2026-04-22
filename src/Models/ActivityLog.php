@@ -4,25 +4,28 @@ namespace LaravelActivityLogs\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\User;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use LaravelActivityLogs\Database\Factories\ActivityLogFactory;
 use LaravelActivityLogs\Enums\ActivityLogsEventEnum;
+use LaravelBackend\Models\User;
 use LaravelBackend\Traits\Models\HasModelNaming;
 
 /**
- * @property string                                           $model_class  Target model.
- * @property array                                            $data         List of changes (old and new values).
- * @property \Illuminate\Database\Eloquent\Model\null         $user_id      Id of the associated user.
- * @property boolean                                          $is_anonymous If there is no user connected when
+ * @property string                                           $model_class   Target model.
+ * @property array<string, mixed>                             $modifications List of
+ * modifications (field and type).
+ * @property \LaravelBackend\Models\User|null                 $user_id       Id of the associated user.
+ * @property boolean                                          $is_anonymous  If there is no user connected when
  * action was realised.
- * @property boolean                                          $is_console   If the action was realised in console.
- * @property integer                                          $model_id     Id of the associated target model.
- * @property \LaravelActivityLogs\Enums\ActivityLogsEventEnum $event        Event of this activity.
- * @property \Illuminate\Support\Carbon                       $created_at   Created date.
+ * @property boolean                                          $is_console    If the action was realised in console.
+ * @property integer                                          $model_id      Id of the associated target model.
+ * @property \LaravelActivityLogs\Enums\ActivityLogsEventEnum $event         Event of this activity.
+ * @property \Illuminate\Support\Carbon                       $created_at    Created date.
  */
 class ActivityLog extends Model
 {
+    /** @use \Illuminate\Database\Eloquent\Factories\HasFactory<\LaravelActivityLogs\Database\Factories\ActivityLogFactory> */
     use HasFactory;
     use HasModelNaming;
 
@@ -36,14 +39,14 @@ class ActivityLog extends Model
     /**
      * The attributes that are mass assignable.
      *
-     * @var array<int, string>
+     * @var list<string>
      */
     protected $fillable = [
         'is_anonymous',
         'model_class',
         'model_id',
         'event',
-        'data',
+        'modifications',
         'created_at',
     ];
 
@@ -53,10 +56,10 @@ class ActivityLog extends Model
      * @var array<string, string>
      */
     protected $casts = [
-        'is_anonymous' => 'boolean',
-        'event'        => ActivityLogsEventEnum::class,
-        'data'         => 'json',
-        'created_at'   => 'datetime',
+        'is_anonymous'  => 'boolean',
+        'event'         => ActivityLogsEventEnum::class,
+        'modifications' => 'array',
+        'created_at'    => 'datetime',
     ];
 
     // * METHODS
@@ -77,15 +80,15 @@ class ActivityLog extends Model
             $userModel   = $userModel->getKeyForSelectQuery();
             $isAnonymous = false;
         }
-        $activity               = new self();
-        $activity->user_id      = $userModel;
-        $activity->is_console   = app()->runningInConsole();
-        $activity->is_anonymous = $isAnonymous;
-        $activity->model_class  = \get_class($model);
-        $activity->model_id     = $model->getKey();
-        $activity->event        = $eventEnum;
-        $activity->data         = static::getChangedColumns($activity, $model, $eventEnum);
-        $activity->created_at   = now();
+        $activity                = new self();
+        $activity->user_id       = $userModel;
+        $activity->is_console    = app()->runningInConsole();
+        $activity->is_anonymous  = $isAnonymous;
+        $activity->model_class   = \get_class($model);
+        $activity->model_id      = $model->getKey();
+        $activity->event         = $eventEnum;
+        $activity->modifications = static::getChangedColumns($activity, $model, $eventEnum);
+        $activity->created_at    = Carbon::now();
         $activity->saveOrFail();
     }
 
@@ -95,17 +98,19 @@ class ActivityLog extends Model
      * @param self                                             $activity
      * @param \Illuminate\Database\Eloquent\Model              $model
      * @param \LaravelActivityLogs\Enums\ActivityLogsEventEnum $eventEnum
-     * @return array
+     * @return array<string, string>
      */
     public static function getChangedColumns(self $activity, Model $model, ActivityLogsEventEnum $eventEnum): array
     {
         $modelClassName = $activity->model_class;
+        $modelTarget    = new $modelClassName();
+
         /** Get type of each fields of the target model */
         /** @var \Illuminate\Database\Eloquent\Model|null $targetModel */
-        $targetModel = $activity->model_class::where(
-            (new $modelClassName())->getRouteKeyName(),
+        $targetModel = ($modelTarget instanceof \Illuminate\Database\Eloquent\Model) ? $activity->model_class::where(
+            $modelTarget->getRouteKeyName(),
             $activity->model_id
-        )->first();
+        )->first() : null;
 
         if (\is_null($targetModel)) {
             return [];
@@ -123,7 +128,7 @@ class ActivityLog extends Model
     }
 
     /**
-     * Get a value type as a string
+     * Get a value type as a string,
      * ! Use this for display purpose only.
      *
      * @param mixed $value
@@ -175,12 +180,12 @@ class ActivityLog extends Model
         return new ActivityLogFactory();
     }
 
-    // * RELATIONSHIPS
+    // * RELATIONSHIPS.
 
     /**
      * Get model that owns the Activity log (belongs-to relationship).
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo<\LaravelBackend\Models\User,$this>
      */
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {

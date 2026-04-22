@@ -10,6 +10,8 @@ use LaravelActivityLogs\Models\ActivityLog as ActivityLogModel;
  * it will be executed as the boot() function would on an Eloquent model.
  * Futhermore, event in the Model observer doesn't erase actual events in the model,
  * but adds them.
+ *
+ * @phpstan-ignore trait.unused
  */
 trait HasActivityLog
 {

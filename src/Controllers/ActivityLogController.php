@@ -31,14 +31,14 @@ class ActivityLogController extends BackendController
      */
     public function index(Request $request): \Inertia\Response
     {
-        /** @var \Illuminate\Database\Eloquent\Builder $activitylogModels */
-        $activitylogModels = ActivityLog::query()->with("user");
+        /** @var \Illuminate\Database\Eloquent\Builder<\LaravelActivityLogs\Models\ActivityLog> $query */
+        $query = ActivityLog::query()->with("user");
 
         /** @var string|null $search Search field */
-        $search = $request->get('search');
+        $search = $request->input('search');
         if ($search) {
             $this->searchQuery(
-                $activitylogModels,
+                $query,
                 $search,
                 null,
                 'modifications',
@@ -54,10 +54,10 @@ class ActivityLogController extends BackendController
         ];
 
         /** Sort columns with a query */
-        $this->sortQuery($activitylogModels);
+        $this->sortQuery($query);
 
         /** Custom pagination */
-        $activitylogModels = $this->paginate($activitylogModels);
+        $activitylogModels = $this->paginate($query);
 
         return $this->inertiaRender('back/Pages/ActivityLogs/Index', [
             'activitylogModels'     => CommonResource::collection($activitylogModels),

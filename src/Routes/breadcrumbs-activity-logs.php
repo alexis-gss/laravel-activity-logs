@@ -14,5 +14,6 @@ Breadcrumbs::for('back.activity-logs.index', function (Generator $trail) {
 });
 Breadcrumbs::for('back.activity-logs.show', function (Generator $trail) {
     $trail->parent('back.activity-logs.index');
-    $trail->push(Str::ucfirst(trans('laravel-backend::crud.actions.visualize')));
+    /** @phpstan-ignore argument.type */
+    $trail->push(Str::of(trans('laravel-backend::crud.actions.visualize'))->ucfirst());
 });
