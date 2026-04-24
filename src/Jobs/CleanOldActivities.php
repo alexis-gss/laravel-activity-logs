@@ -12,7 +12,7 @@ use Illuminate\Queue\SerializesModels;
 use LaravelActivityLogs\Models\ActivityLog;
 
 /**
- * Permanently deletes entries that have been stored for more than 3 months.
+ * Permanently deletes entries that have been stored for more than one year.
  */
 class CleanOldActivities implements ShouldQueue, ShouldBeUnique
 {
@@ -22,17 +22,27 @@ class CleanOldActivities implements ShouldQueue, ShouldBeUnique
     use SerializesModels;
 
     /**
-     * Delete entries if it has been stored for more than 3 months.
+     * Create the controller instance.
+     *
+     * @param boolean $force
+     */
+    public function __construct(public readonly bool $force = false)
+    {
+    }
+
+    /**
+     * Delete entries if it has been stored for more than one year.
      *
      * @return void
      */
     public function handle(): void
     {
-        $dateLimit = Carbon::now()->subMonths(3);
+        $query = ActivityLog::query();
 
-        ActivityLog::query()
-            ->where('created_at', '<', $dateLimit)
-            ->cursor()
-            ->each(fn($model) => $model->delete());
+        if (!$this->force) {
+            $query->where('created_at', '<', Carbon::now()->subYear());
+        }
+
+        $query->cursor()->each(fn($model) => $model->delete());
     }
 }

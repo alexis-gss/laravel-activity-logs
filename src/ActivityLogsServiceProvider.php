@@ -5,9 +5,10 @@ namespace LaravelActivityLogs;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
+use LaravelActivityLogs\Console\Commands\CleanOldActivities;
 use LaravelActivityLogs\Console\Commands\InstallActivityLogs;
 use LaravelActivityLogs\Database\Seeders\ActivityLogSeeder;
-use LaravelActivityLogs\Jobs\CleanOldActivities;
+use LaravelActivityLogs\Jobs\CleanOldActivities as CleanOldActivitiesJob;
 use LaravelActivityLogs\Models\ActivityLog;
 use LaravelActivityLogs\Policies\ActivityLogPolicy;
 use LaravelFrontend\Enums\SeederCategoryEnum;
@@ -29,6 +30,7 @@ class ActivityLogsServiceProvider extends ServiceProvider
     {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                CleanOldActivities::class,
                 InstallActivityLogs::class,
             ]);
         }
