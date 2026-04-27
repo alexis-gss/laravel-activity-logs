@@ -1,5 +1,14 @@
+includes:
+    - vendor/larastan/larastan/extension.neon
+
 parameters:
    paths:
+      - files/
       - src/
 
    level: 7
+
+   ignoreErrors:
+      -
+         message: '#Called .env. outside of the config directory#'
+         path: files/config/*

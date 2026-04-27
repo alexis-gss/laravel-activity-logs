@@ -4,6 +4,7 @@
     <description>Created with the PHP Coding Standard Generator. http://edorian.github.com/php-coding-standard-generator/</description>
     <arg name="colors" />
     <arg name="extensions" value="php" />
+    <file>files/</file>
     <file>src/</file>
     <exclude-pattern type="relative">src/files/content/**/*.php</exclude-pattern>
     <rule ref="PSR1" />
@@ -114,10 +115,7 @@
     <rule ref="Squiz.Commenting.PostStatementComment"/>
     <rule ref="Squiz.Commenting.VariableComment"/>
     <rule ref="SlevomatCodingStandard.Namespaces.UnusedUses.UnusedUse" />
-
-    <!-- For Laravel migrations -->
     <rule ref="PSR1.Classes.ClassDeclaration.MissingNamespace">
         <exclude-pattern>*/database/migrations/*</exclude-pattern>
     </rule>
-
 </ruleset>

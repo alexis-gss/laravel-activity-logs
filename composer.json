@@ -30,20 +30,29 @@
     "require-dev": {
         "larastan/larastan": "^3.9",
         "slevomat/coding-standard": "^8.3",
-        "squizlabs/php_codesniffer": "^3.7"
-    },
-    "autoload": {
-        "psr-4": {
-            "LaravelActivityLogs\\": "src/"
-        }
+        "squizlabs/php_codesniffer": "^3.7",
+        "laravel/pint": "^1.29",
+        "driftingly/rector-laravel": "^2.3",
+        "orchestra/testbench": "^11.1"
     },
     "scripts": {
+        "post-autoload-dump": [
+            "@php ./vendor/bin/testbench package:discover --ansi"
+        ],
         "phpcs": [
             "./vendor/bin/phpcs"
         ],
         "phpstan": [
             "./vendor/bin/phpstan"
+        ],
+        "rector": [
+            "./vendor/bin/rector"
         ]
+    },
+    "autoload": {
+        "psr-4": {
+            "LaravelActivityLogs\\": "src/"
+        }
     },
     "config": {
         "sort-packages": true,
