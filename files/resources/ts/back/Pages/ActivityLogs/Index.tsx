@@ -1,6 +1,8 @@
 // * Packages
 import { FileTextIcon, UserIcon } from "lucide-react";
 import { route } from "ziggy-js";
+import { Row } from "@tanstack/react-table";
+import { usePage } from "@inertiajs/react";
 // * Components shadcn
 import { Badge } from "@/components/ui/badge";
 // * Other
@@ -15,8 +17,7 @@ import { Resource } from "@/back/types/global";
 import { ActivityLogModel } from "@/back/types/activity-logs";
 import str from "@/hooks/use-string";
 import useTrans from "@/hooks/use-translations";
-import { Row } from "@tanstack/react-table";
-import { usePage } from "@inertiajs/react";
+import { AppEnv } from "@/types/global";
 
 type ActivityLogsEventEnumProps = Record<
   string,
@@ -29,7 +30,7 @@ type ActivityLogsIndexProps = {
   activityLogsEventEnum: ActivityLogsEventEnumProps;
 };
 
-const getColumns = (activityLogsEventEnum: ActivityLogsEventEnumProps) => {
+const getColumns = (routeName: string, activityLogsEventEnum: ActivityLogsEventEnumProps) => {
   return [
     {
       accessorKey: "event",
@@ -92,7 +93,7 @@ const getColumns = (activityLogsEventEnum: ActivityLogsEventEnumProps) => {
         if (user) {
           return (
             <BtnOptionnalLinkWithTooltip
-              link={route("back.users.show", {
+              link={route(`${routeName}users.show`, {
                 user: userId,
               })}
               content={
@@ -155,7 +156,7 @@ const getColumns = (activityLogsEventEnum: ActivityLogsEventEnumProps) => {
         if (event !== activityLogsEventEnum.deleted.value) {
           return (
             <BtnOptionnalLinkWithTooltip
-              link={route(`back.${str(model).plural().value()}.show`, modelId)}
+              link={route(`${routeName}${str(model).plural().value()}.show`, modelId)}
               content={
                 <>
                   <FileTextIcon />
@@ -210,9 +211,10 @@ export default function Index({
   searchFields,
   activityLogsEventEnum,
 }: ActivityLogsIndexProps) {
-  const actionModels = [Views.VISUALIZATION];
+  const routeName = (usePage().props.appEnv as AppEnv).routes.name;
   const modelName = usePage().props.modelName as string;
-  const columns = getColumns(activityLogsEventEnum);
+  const columns = getColumns(routeName, activityLogsEventEnum);
+  const actionModels = [Views.VISUALIZATION];
   return (
     <AuthenticatedLayout
       title={str(

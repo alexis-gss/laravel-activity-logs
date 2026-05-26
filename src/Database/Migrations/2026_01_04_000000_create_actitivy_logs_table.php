@@ -23,7 +23,7 @@ return new class extends Migration
             $table->boolean('is_console')->comment('If the action was realised in console.');
             $table->integer('model_id')->comment('Id of the associated target model.');
             $table->integer('event')->comment('Event of this activity (ActivityLogsEventEnum).');
-            $table->timestamp('created_at')->comment('The date on which the user was published.');
+            $table->timestamp('created_at')->comment('Date the activity log was created.');
         });
     }
 

@@ -14,6 +14,7 @@ import { ActivityLogModel } from "@/back/types/activity-logs";
 import str from "@/hooks/use-string";
 import useTrans from "@/hooks/use-translations";
 import { GetFormatedDate, GetTranslation } from "@/lib/utils";
+import { AppEnv } from "@/types/global";
 
 type ActivityLogsEventEnumProps = Record<
   string,
@@ -26,6 +27,7 @@ type ActivityLogsShowProps = {
 };
 
 const getColumns = (
+  routeName: string,
   activityLogModel: ActivityLogModel,
   activityLogsEventEnum: ActivityLogsEventEnumProps,
 ) => {
@@ -33,8 +35,8 @@ const getColumns = (
     {
       accessorKey: "event",
       header: str(
-        GetTranslation(`laravel-activity-logs::trans.attributes.event`),
-      )
+          GetTranslation(`laravel-activity-logs::trans.attributes.event`)
+        )
         .ucFirst()
         .value(),
       cell: ({ value }: { value: number }) => {
@@ -71,7 +73,7 @@ const getColumns = (
         if (value && activityLogModel.user)
           return (
             <BtnOptionnalLinkWithTooltip
-              link={route("back.users.show", { user: value })}
+              link={route(`${routeName}users.show`, { user: value })}
               content={
                 <>
                   <UserIcon />
@@ -115,7 +117,7 @@ const getColumns = (
         return activityLogModel.event !==
           activityLogsEventEnum.deleted.value ? (
           <BtnOptionnalLinkWithTooltip
-            link={route(`back.${model}.show`, activityLogModel.model_id)}
+            link={route(`${routeName}${model}.show`, activityLogModel.model_id)}
             content={
               <>
                 <UserIcon />
@@ -184,20 +186,25 @@ export default function Show({
   data,
   activityLogsEventEnum,
 }: ActivityLogsShowProps) {
-  const { auth } = usePage().props as unknown as {
+  const { auth, appEnv } = usePage().props as unknown as {
     auth: AuthProp;
+    appEnv: AppEnv;
   };
   const { viewAny } = auth.policies.activityLogs;
   const modelName = usePage().props.modelName as string;
   const activityLogModel = data.data as ActivityLogModel;
-  const columns = getColumns(activityLogModel, activityLogsEventEnum);
+  const columns = getColumns(
+    appEnv.routes.name,
+    activityLogModel,
+    activityLogsEventEnum,
+  );
   const transBackToList = useTrans("laravel-backend::back.crud_back_to_list");
   const beforeNode = () => {
     return (
       viewAny && (
         <div className="flex justify-end items-center gap-x-1.5">
           <BtnOptionnalLinkWithTooltip
-            link={route(`back.${modelName}.index`)}
+            link={route(`${appEnv.routes.name}${modelName}.index`)}
             content={<ArrowLeftIcon />}
             tooltipContent={<p>{transBackToList}</p>}
           />
