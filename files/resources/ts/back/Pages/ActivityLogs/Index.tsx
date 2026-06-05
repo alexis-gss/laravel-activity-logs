@@ -13,11 +13,10 @@ import DataTableFilterButton from "@/back/Components/Table/DataTableFilterButton
 import BtnOptionnalLinkWithTooltip from "@/back/Components/BtnOptionnalLinkWithTooltip";
 import { GetFormatedDate, GetTranslation } from "@/lib/utils";
 import { Views } from "@/back/lib/actions";
-import { Resource } from "@/back/types/global";
+import { ConfigBackend, Resource } from "@/back/types/global";
 import { ActivityLogModel } from "@/back/types/activity-logs";
 import str from "@/hooks/use-string";
 import useTrans from "@/hooks/use-translations";
-import { AppEnv } from "@/types/global";
 
 type ActivityLogsEventEnumProps = Record<
   string,
@@ -30,7 +29,10 @@ type ActivityLogsIndexProps = {
   activityLogsEventEnum: ActivityLogsEventEnumProps;
 };
 
-const getColumns = (routeName: string, activityLogsEventEnum: ActivityLogsEventEnumProps) => {
+const getColumns = (
+  routeName: string,
+  activityLogsEventEnum: ActivityLogsEventEnumProps,
+) => {
   return [
     {
       accessorKey: "event",
@@ -152,11 +154,15 @@ const getColumns = (routeName: string, activityLogsEventEnum: ActivityLogsEventE
         const modelSplit = modelClass.split("\\");
         const modelTargetName = modelSplit[modelSplit.length - 1];
         const model = str(modelTargetName).kebabCase().value();
+        const targetRoute = `${routeName}${str(model).plural().value()}.show`;
 
-        if (event !== activityLogsEventEnum.deleted.value) {
+        if (
+          event !== activityLogsEventEnum.deleted.value &&
+          route().has(targetRoute)
+        ) {
           return (
             <BtnOptionnalLinkWithTooltip
-              link={route(`${routeName}${str(model).plural().value()}.show`, modelId)}
+              link={route(targetRoute, modelId)}
               content={
                 <>
                   <FileTextIcon />
@@ -211,7 +217,8 @@ export default function Index({
   searchFields,
   activityLogsEventEnum,
 }: ActivityLogsIndexProps) {
-  const routeName = (usePage().props.appEnv as AppEnv).routes.name;
+  const routeName = (usePage().props.configBackend as ConfigBackend).routes
+    .name;
   const modelName = usePage().props.modelName as string;
   const columns = getColumns(routeName, activityLogsEventEnum);
   const actionModels = [Views.VISUALIZATION];
@@ -225,7 +232,11 @@ export default function Index({
         .ucFirst()
         .value()}
     >
-      <DataTableSearch modelRoute={modelName} searchFields={searchFields} />
+      <DataTableSearch
+        modelRoute={modelName}
+        prefixRoute={routeName}
+        searchFields={searchFields}
+      />
       <DataTable
         columns={columns}
         modelRoute={modelName}

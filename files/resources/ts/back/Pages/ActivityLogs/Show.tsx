@@ -9,12 +9,11 @@ import AuthenticatedLayout from "@/back/Layouts/AuthenticatedLayout";
 import DetailsTable from "@/back/Components/Table/DetailsTable";
 import ModelActions from "@/back/Components/ModelActions";
 import BtnOptionnalLinkWithTooltip from "@/back/Components/BtnOptionnalLinkWithTooltip";
-import { AuthProp, SingleResource } from "@/back/types/global";
+import { AuthProp, ConfigBackend, SingleResource } from "@/back/types/global";
 import { ActivityLogModel } from "@/back/types/activity-logs";
 import str from "@/hooks/use-string";
 import useTrans from "@/hooks/use-translations";
 import { GetFormatedDate, GetTranslation } from "@/lib/utils";
-import { AppEnv } from "@/types/global";
 
 type ActivityLogsEventEnumProps = Record<
   string,
@@ -35,8 +34,8 @@ const getColumns = (
     {
       accessorKey: "event",
       header: str(
-          GetTranslation(`laravel-activity-logs::trans.attributes.event`)
-        )
+        GetTranslation(`laravel-activity-logs::trans.attributes.event`),
+      )
         .ucFirst()
         .value(),
       cell: ({ value }: { value: number }) => {
@@ -114,10 +113,12 @@ const getColumns = (
         const modelSplit = value.split("\\");
         const modelTargetName = modelSplit[modelSplit.length - 1];
         const model = str(modelTargetName).kebabCase().plural().value();
-        return activityLogModel.event !==
-          activityLogsEventEnum.deleted.value ? (
+        const targetRoute = `${routeName}${model}.show`;
+
+        return activityLogModel.event !== activityLogsEventEnum.deleted.value &&
+          route().has(targetRoute) ? (
           <BtnOptionnalLinkWithTooltip
-            link={route(`${routeName}${model}.show`, activityLogModel.model_id)}
+            link={route(targetRoute, activityLogModel.model_id)}
             content={
               <>
                 <UserIcon />
@@ -186,15 +187,15 @@ export default function Show({
   data,
   activityLogsEventEnum,
 }: ActivityLogsShowProps) {
-  const { auth, appEnv } = usePage().props as unknown as {
+  const { auth, configBackend } = usePage().props as unknown as {
     auth: AuthProp;
-    appEnv: AppEnv;
+    configBackend: ConfigBackend;
   };
   const { viewAny } = auth.policies.activityLogs;
   const modelName = usePage().props.modelName as string;
-  const activityLogModel = data.data as ActivityLogModel;
+  const activityLogModel = data.data as unknown as ActivityLogModel;
   const columns = getColumns(
-    appEnv.routes.name,
+    configBackend.routes.name,
     activityLogModel,
     activityLogsEventEnum,
   );
@@ -204,7 +205,7 @@ export default function Show({
       viewAny && (
         <div className="flex justify-end items-center gap-x-1.5">
           <BtnOptionnalLinkWithTooltip
-            link={route(`${appEnv.routes.name}${modelName}.index`)}
+            link={route(`${configBackend.routes.name}${modelName}.index`)}
             content={<ArrowLeftIcon />}
             tooltipContent={<p>{transBackToList}</p>}
           />
