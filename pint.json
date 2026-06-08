@@ -1,5 +1,8 @@
 {
     "preset": "laravel",
+    "exclude": [
+        "packages"
+    ],
     "rules": {
         "indentation_type": true,
         "single_line_empty_body": false,
